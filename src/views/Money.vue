@@ -2,19 +2,6 @@
   <div class="nav-wrapper">
     <div class="content">
       <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
-      <p>Money</p>
     </div>
     <Nav />
   </div>
