@@ -1,15 +1,7 @@
 <template>
-  <div class="nav">
-    <router-link to="/money">
-      <Icon name="money" />记账
-    </router-link>|
-    <router-link to="/labels">
-      <Icon name="label" />标签
-    </router-link>|
-    <router-link to="/statistics">
-      <Icon name="statistics" />统计
-    </router-link>
-  </div>
+  <svg class="icon">
+    <use :xlink:href="'#'+name" />
+  </svg>
 </template>
 
 <script lang="ts">
@@ -21,12 +13,17 @@ try {
   console.log(error);
 }
 export default {
-  name: "Nav",
+  props: ["name"],
+  name: "Icon",
 };
 </script>
 
 <style lang="scss" scoped>
-.nav {
-  border: 1px solid red;
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 </style>
