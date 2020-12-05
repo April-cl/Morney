@@ -1,12 +1,19 @@
 <template>
   <div class="nav">
-    <router-link to="/money">记账</router-link>|
+    <router-link to="/money">
+      <svg>
+        <use xlink:href="#money" />
+      </svg>
+      记账
+    </router-link>|
     <router-link to="/labels">标签</router-link>|
     <router-link to="/statistics">统计</router-link>
   </div>
 </template>
 
 <script lang="ts">
+import x from "@/assets/icons/money.svg";
+console.log(x); // x变量要使用才会在页面显示
 export default {
   name: "Nav",
 };
