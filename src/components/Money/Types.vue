@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Types extends Vue {
@@ -19,23 +19,6 @@ export default class Types extends Vue {
     this.type = type;
   }
 }
-// export default {
-//   name: "Types",
-//   data() {
-//     return {
-//       type: "-",
-//     };
-//   },
-//   methods: {
-//     selectType(type) {
-//       console.log(this.type);
-//       if (type !== "-" && type !== "+") {
-//         throw new Error("type is unkown");
-//       }
-//       this.type = type;
-//     },
-//   },
-// };
 </script>
 
 <style lang="scss" scoped>
