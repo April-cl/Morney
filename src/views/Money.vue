@@ -4,7 +4,7 @@ import content from '../shims-vue';
     <NumberPad />
     <Types />
     <Notes />
-    <Tags />
+    <Tags :dataSource="tags" />
   </Layout>
 </template>
 
@@ -17,6 +17,11 @@ import Tags from "@/components/Money/Tags.vue";
 export default {
   name: "Money",
   components: { Tags, Notes, Types, NumberPad },
+  data() {
+    return {
+      tags: ["衣", "食", "住"],
+    };
+  },
 };
 </script>
 
