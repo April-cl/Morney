@@ -4,7 +4,7 @@ import content from '../shims-vue';
     <NumberPad />
     <Types />
     <Notes />
-    <Tags :dataSource="tags" />
+    <Tags :data-source.sync="tags" />
   </Layout>
 </template>
 
