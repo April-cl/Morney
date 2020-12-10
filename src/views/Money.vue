@@ -22,15 +22,19 @@ type Record = {
   notes: string;
   type: string;
   amount: number;
+  createAt?: Date;
 };
+
+const recordList: Record[] = JSON.parse(
+  window.localStorage.getItem("recordList") || "[]"
+);
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags: string[] = ["衣", "食", "住", "行"];
-
-  recordList: Record[] = [];
+  recordList: Record[] = recordList;
 
   record: Record = {
     tags: [],
@@ -49,6 +53,7 @@ export default class Money extends Vue {
 
   saveRecord() {
     // this.recordList.push(this.record); 这种写法有bug
+    this.record.createAt = new Date();
     this.recordList.push(JSON.parse(JSON.stringify(this.record)));
   }
 
