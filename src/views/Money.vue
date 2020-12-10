@@ -48,7 +48,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-    // this.recordList.push(this.record); 这种写法由bug
+    // this.recordList.push(this.record); 这种写法有bug
     this.recordList.push(JSON.parse(JSON.stringify(this.record)));
   }
 
