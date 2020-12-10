@@ -1,8 +1,8 @@
 import content from '../shims-vue';
 <template>
   <Layout class-prefix="layout">
-    <NumberPad @update:value="onUpdateAmount" />
-    <Types @update:value="onUpdateTypes" />
+    <NumberPad :value="record.amount" @update:value="onUpdateAmount" />
+    <Types :value="record.type" @update:value="onUpdateTypes" />
     <Notes @update:value="onUpdateNotes" />
     <Tags @update:value="onUpdateTags" :data-source.sync="tags" />
     {{record}}
@@ -20,7 +20,7 @@ import { Component } from "vue-property-decorator";
 type Record = {
   tags: string[];
   notes: string;
-  types: string;
+  type: string;
   amount: number;
 };
 
@@ -33,8 +33,8 @@ export default class Money extends Vue {
   record: Record = {
     tags: [],
     notes: "",
-    types: "-",
-    amount: 0,
+    type: "+",
+    amount: 100,
   };
 
   onUpdateTags(value: string[]) {
@@ -46,7 +46,7 @@ export default class Money extends Vue {
   }
 
   onUpdateTypes(value: string) {
-    this.record.types = value;
+    this.record.type = value;
   }
 
   onUpdateAmount(value: number) {

@@ -26,7 +26,9 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class NumberPad extends Vue {
-  output: string = "0";
+  @Prop(Number) readonly value!: number;
+
+  output = this.value.toString();
 
   inputContent(event: MouseEvent) {
     const input = (event.target as HTMLElement).textContent!;

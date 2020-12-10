@@ -13,11 +13,12 @@ import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Types extends Vue {
-  type = "-";
+  @Prop(String) readonly value!: string;
+  type = this.value;
   selectType(type: string) {
     if (type !== "-" && type !== "+") throw new Error("type is undefine");
     this.type = type;
-    this.$emit("update:value", this.type);
+    this.$emit("update:value", type);
   }
 }
 </script>
