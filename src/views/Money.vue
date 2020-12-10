@@ -1,8 +1,8 @@
 import content from '../shims-vue';
 <template>
   <Layout class-prefix="layout">
-    <NumberPad :value="record.amount" @update:value="onUpdateAmount" />
-    <Types :value="record.type" @update:value="onUpdateTypes" />
+    <NumberPad :value.sync="record.amount" />
+    <Types :value.sync="record.type" />
     <Notes @update:value="onUpdateNotes" />
     <Tags @update:value="onUpdateTags" :data-source.sync="tags" />
     {{record}}
@@ -33,8 +33,8 @@ export default class Money extends Vue {
   record: Record = {
     tags: [],
     notes: "",
-    type: "+",
-    amount: 100,
+    type: "-",
+    amount: 0,
   };
 
   onUpdateTags(value: string[]) {
