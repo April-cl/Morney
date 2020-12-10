@@ -17,6 +17,7 @@ export default class Types extends Vue {
   selectType(type: string) {
     if (type !== "-" && type !== "+") throw new Error("type is undefine");
     this.type = type;
+    this.$emit("update:value", this.type);
   }
 }
 </script>

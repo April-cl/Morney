@@ -41,11 +41,17 @@ export default class Money extends Vue {
     this.record.tags = value;
   }
 
-  onUpdateNotes() {}
+  onUpdateNotes(value: string) {
+    this.record.notes = value;
+  }
 
-  onUpdateTypes() {}
+  onUpdateTypes(value: string) {
+    this.record.types = value;
+  }
 
-  onUpdateAmount() {}
+  onUpdateAmount(value: number) {
+    this.record.amount = value;
+  }
 }
 </script>
 
