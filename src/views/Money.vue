@@ -17,6 +17,8 @@ import Notes from "@/components/Money/Notes.vue";
 import Tags from "@/components/Money/Tags.vue";
 import { Component, Watch } from "vue-property-decorator";
 
+const model = require("@/model.js").default;
+
 type Record = {
   tags: string[];
   notes: string;
@@ -25,9 +27,7 @@ type Record = {
   createAt?: Date;
 };
 
-const recordList: Record[] = JSON.parse(
-  window.localStorage.getItem("recordList") || "[]"
-);
+const recordList: Record[] = model.fetch();
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
@@ -59,7 +59,7 @@ export default class Money extends Vue {
 
   @Watch("recordList")
   onRecordListChange() {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>
