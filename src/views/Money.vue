@@ -3,7 +3,7 @@ import content from '../shims-vue';
   <Layout class-prefix="layout">
     <NumberPad :value.sync="record.amount" @submit="saveRecord" />
     <Types :value.sync="record.type" />
-    <Notes @update:value="onUpdateNotes" />
+    <Notes field-name="备注" placeholder="在这里输入备注" @update:value="onUpdateNotes" />
     <Tags @update:value="onUpdateTags" :data-source.sync="tags" />
     {{recordList}}
   </Layout>
