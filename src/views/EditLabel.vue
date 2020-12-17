@@ -40,7 +40,7 @@ export default class EditLabel extends Vue {
   goBack() {
     this.$router.back();
   }
-  update(name) {
+  update(name: string) {
     if (this.tag) {
       tagListModel.update(this.tag.id, name);
     }
@@ -49,6 +49,8 @@ export default class EditLabel extends Vue {
     if (this.tag) {
       if (tagListModel.remove(this.tag.id)) {
         alert("删除成功，点击跳转回标签页");
+      } else {
+        alert("删除失败");
       }
       this.goBack();
     }
