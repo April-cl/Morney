@@ -6,6 +6,7 @@ const recordListModel = {
     create(record: RecordItem) {
         record.createAt = new Date();
         this.data.push(clone(record));
+        this.save()
     },
     fetch() {
         this.data = JSON.parse(
@@ -13,7 +14,7 @@ const recordListModel = {
         ) as RecordItem[];
         return this.data
     },
-    save(data: RecordItem[]) {
+    save() {
         window.localStorage.setItem(localStorageName, JSON.stringify(this.data));
     }
 }
