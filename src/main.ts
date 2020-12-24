@@ -23,6 +23,15 @@ window.createTag = (name) => {
     window.alert("添加成功");
   }
 }
+window.findTag = (id) => {
+  return window.tagList.filter(t => t.id === id)[0]
+}
+window.removeTag = (id) => {
+  return tagListModel.remove(id)
+}
+window.updateTag = (id, name) => {
+  return tagListModel.update(id, name)
+}
 
 new Vue({
   router,
