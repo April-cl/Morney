@@ -1,4 +1,4 @@
-import createId from '../lib/createId';
+import createId from '@/lib/createId';
 
 const localStorageName = 'tabList'
 
