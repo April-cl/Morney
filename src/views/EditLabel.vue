@@ -26,6 +26,7 @@ import store from "@/store/index2";
 })
 export default class EditLabel extends Vue {
   tag?: Tag = undefined;
+
   created() {
     this.tag = store.findTag(this.$route.params.id);
     if (!this.tag) {

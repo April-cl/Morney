@@ -1,4 +1,3 @@
-import Icon from '@/components/Icon.vue';
 <template>
   <Layout>
     <div class="tags">
