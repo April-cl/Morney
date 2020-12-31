@@ -1,5 +1,4 @@
 import createId from '@/lib/createId';
-import tagListModel from '@/models/tagListModel';
 
 const localStorageName = 'tagList'
 
