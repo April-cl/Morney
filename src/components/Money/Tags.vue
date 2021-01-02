@@ -23,7 +23,7 @@ import TagHelper from "@/mixins/TagHelper";
 @Component({
   computed: {
     tagList() {
-      return this.$store.commit("fetchTags");
+      return this.$store.state.tagList;
     },
   },
 })
