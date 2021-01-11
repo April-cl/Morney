@@ -58,11 +58,31 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
+%item {
+  padding: 8px 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+.title {
+  @extend %item;
+}
+.record {
+  background: white;
+  @extend %item;
+}
+.notes {
+  margin-right: auto;
+  margin-left: 16px;
+  color: #999;
+}
+
 ::v-deep {
   .type-tabs-item {
-    background: #c4c4c4;
+    background: white;
     &.selected {
-      background: white;
+      background: #c4c4c4;
       &::after {
         display: none;
       }
