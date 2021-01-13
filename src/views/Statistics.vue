@@ -5,7 +5,7 @@
     <ol>
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
-          {{group.title}}
+          {{beautify(group.title)}}
           <span>￥{{group.total}}</span>
         </h3>
         <ol>
@@ -33,6 +33,19 @@ import clone from "@/lib/clone.ts";
   components: { Tabs },
 })
 export default class Statistics extends Vue {
+  beautify(string: string) {
+    const day = dayjs(string);
+    const now = dayjs();
+    if (day.isSame(now, "day")) {
+      return "今天";
+    } else if (day.isSame(now.substract(1, "day"), "day")) {
+      return "昨天";
+    } else if (day.isSame(now, "year")) {
+      return day.format("M月D日");
+    } else {
+      return day.format("YYYY年M月D日");
+    }
+  }
   get recordList() {
     return (this.$store.state as RootState).recordList;
   }
