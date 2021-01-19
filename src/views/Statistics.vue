@@ -38,7 +38,7 @@ export default class Statistics extends Vue {
     const now = dayjs();
     if (day.isSame(now, "day")) {
       return "今天";
-    } else if (day.isSame(now.substract(1, "day"), "day")) {
+    } else if (day.isSame(now.subtract(1, "day"), "day")) {
       return "昨天";
     } else if (day.isSame(now, "year")) {
       return day.format("M月D日");
