@@ -51,7 +51,7 @@ export default class Statistics extends Vue {
   }
   get groupedList() {
     const { recordList } = this;
-    if (recordList.length === 0) {
+    if (recordList.filter((r) => r.type === this.type).length === 0) {
       return [];
     }
     const newList = clone(recordList)
@@ -86,7 +86,7 @@ export default class Statistics extends Vue {
     return result;
   }
   tagString(tags: Tag[]) {
-    return tags.length === 0 ? "无" : tags.join(",");
+    return tags.length === 0 ? "无" : tags.map((t) => t.name).join(",");
   }
   beforeCreate() {
     this.$store.commit("fetchRecords");
