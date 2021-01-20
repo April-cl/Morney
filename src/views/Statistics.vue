@@ -2,7 +2,7 @@
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type" />
     <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval" />
-    <ol>
+    <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
           {{beautify(group.title)}}
@@ -17,6 +17,7 @@
         </ol>
       </li>
     </ol>
+    <div v-else class="noResult">目前没有记录</div>
   </Layout>
 </template>
 
@@ -117,6 +118,11 @@ export default class Statistics extends Vue {
   margin-right: auto;
   margin-left: 16px;
   color: #999;
+}
+
+.noResult {
+  padding: 16px;
+  text-align: center;
 }
 
 ::v-deep {
