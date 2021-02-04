@@ -5,7 +5,7 @@
     <div class="notes">
       <FormItem field-name="备注" placeholder="在这里输入备注" :value.sync="record.notes" />
     </div>
-    <Tags />
+    <Tags @update:value="onUpdateTags" />
   </Layout>
 </template>
 
@@ -37,6 +37,10 @@ export default class Money extends Vue {
 
   onUpdateNotes(value: string) {
     this.record.notes = value;
+  }
+
+  onUpdateTags(value: []) {
+    this.record.tags = value;
   }
 
   created() {
