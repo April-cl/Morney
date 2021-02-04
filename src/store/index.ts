@@ -30,6 +30,12 @@ const store = new Vuex.Store({
     },
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]')
+      const defaultTagList: string[] = ['衣', '食', '住', '行']
+      if (!state.tagList || state.tagList.length === 0) {
+        for (let i = 0; i < defaultTagList.length; i++) {
+          store.commit('createTag', defaultTagList[i])
+        }
+      }
     },
     findTag(state, id: string) {
       state.tagList.filter(t => t.id === id)[0]
