@@ -5,7 +5,7 @@
     <div class="notes">
       <FormItem field-name="备注" placeholder="在这里输入备注" :value.sync="record.notes" />
     </div>
-    <Tags @update:value="record.tags = $event" />
+    <Tags ref="tags" @update:value="record.tags = $event" />
   </Layout>
 </template>
 
@@ -42,6 +42,8 @@ export default class Money extends Vue {
   saveRecord() {
     this.$store.commit("createRecord", this.record);
     this.record.notes = "";
+    this.record.tags = [];
+    this.$refs.tags.selectedTags = this.record.tags;
   }
 }
 </script>
