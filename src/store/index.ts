@@ -38,18 +38,22 @@ const store = new Vuex.Store({
       const names = state.tagList.map(item => item.name)
       if (names.indexOf(name) >= 0) {
         window.alert("这个标签已经有啦");
+      } else {
+        const id = createId().toString()
+        state.tagList.push({ id, name: name })
+        store.commit('saveTags')
+        window.alert('添加成功')
       }
-      const id = createId().toString()
-      state.tagList.push({ id, name: name })
-      store.commit('saveTags')
-      window.alert('添加成功')
     },
     updateTag(state, payload: { id: string, name: string }) {
       const { id, name } = payload
       const idList = state.tagList.map(item => item.id)
       if (idList.indexOf(id) >= 0) {
         const names = state.tagList.map(item => item.name)
-        if (names.indexOf(name) >= 0) { window.alert('标签名重复了') } else {
+        if (names.indexOf(name) >= 0) {
+          console.log(names)
+          window.alert('标签名重复了')
+        } else {
           const tag = state.tagList.filter(item => item.id === id)[0]
           tag.name = name
           store.commit('saveTags')
