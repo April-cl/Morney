@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type" />
-    <div id="main"></div>
+    <Chart :options="chartOptions" />
     <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
@@ -28,34 +28,12 @@ import { Component } from "vue-property-decorator";
 import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
 import clone from "@/lib/clone.ts";
-import * as echarts from "echarts";
+import Chart from "@/components/Chart.vue";
 
 @Component({
-  components: { Tabs },
+  components: { Tabs, Chart },
 })
 export default class Statistics extends Vue {
-  mounted() {
-    console.log("mounted");
-    const myChart = echarts.init(document.getElementById("main"));
-    myChart.setOption({
-      title: {
-        text: "ECharts 入门示例",
-      },
-      tooltip: {},
-      xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
-      },
-      yAxis: {},
-      series: [
-        {
-          name: "销量",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20],
-        },
-      ],
-    });
-  }
-
   beautify(string: string) {
     const day = dayjs(string);
     const now = dayjs();
@@ -108,6 +86,24 @@ export default class Statistics extends Vue {
     });
     return result;
   }
+  get chartOptions() {
+    return {
+      title: {
+        text: "ECharts 入门示例",
+      },
+      xAxis: {
+        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+      },
+      yAxis: {},
+      series: [
+        {
+          name: "销量",
+          type: "bar",
+          data: [5, 20, 36, 10, 10, 20],
+        },
+      ],
+    };
+  }
   tagString(tags: Tag[]) {
     return tags.length === 0 ? "无" : tags.map((t) => t.name).join(",");
   }
@@ -121,10 +117,6 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
-#main {
-  width: 600px;
-  height: 400px;
-}
 %item {
   padding: 8px 16px;
   line-height: 24px;
