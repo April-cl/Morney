@@ -1,5 +1,5 @@
 <template>
-  <div id="main" ref="wrapper"></div>
+  <div id="main"></div>
 </template>
 
 <script lang="ts">
@@ -22,7 +22,6 @@ export default class Chart extends Vue {
 
 <style scoped>
 #main {
-  width: 600px;
   height: 400px;
 }
 </style>

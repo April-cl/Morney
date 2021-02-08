@@ -1,7 +1,9 @@
 <template>
   <Layout>
     <Tabs class-prefix="type" :data-source="recordTypeList" :value.sync="type" />
-    <Chart :options="chartOptions" />
+    <div class="chart-wrapper">
+      <Chart class="chart" :options="chartOptions" />
+    </div>
     <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
@@ -34,6 +36,10 @@ import Chart from "@/components/Chart.vue";
   components: { Tabs, Chart },
 })
 export default class Statistics extends Vue {
+  mounted() {
+    const chartWrapper = document.getElementsByClassName("chart-wrapper")[0];
+    chartWrapper.scrollLeft = chartWrapper.scrollWidth;
+  }
   beautify(string: string) {
     const day = dayjs(string);
     const now = dayjs();
@@ -88,20 +94,85 @@ export default class Statistics extends Vue {
   }
   get chartOptions() {
     return {
+      grid: {
+        left: 0,
+        right: 0,
+      },
       title: {
         text: "ECharts 入门示例",
       },
       xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"],
+        data: [
+          "衬衫",
+          "羊毛衫",
+          "雪纺衫",
+          "裤子",
+          "高跟鞋",
+          "袜子",
+          "衬衫",
+          "羊毛衫",
+          "雪纺衫",
+          "裤子",
+          "高跟鞋",
+          "袜子",
+          "衬衫",
+          "羊毛衫",
+          "雪纺衫",
+          "裤子",
+          "高跟鞋",
+          "袜子",
+          "衬衫",
+          "羊毛衫",
+          "雪纺衫",
+          "裤子",
+          "高跟鞋",
+          "袜子",
+        ],
+        axisTick: { alignWithLabel: true },
+        axisLine: { lineStyle: { color: "#666" } },
       },
       yAxis: {},
       series: [
         {
-          name: "销量",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20],
+          symbol: "circle",
+          symbolSize: 14,
+          itemStyle: {
+            color: "#666",
+            borderColor: "#666",
+          },
+          type: "line",
+          data: [
+            5,
+            20,
+            36,
+            10,
+            10,
+            20,
+            5,
+            20,
+            36,
+            10,
+            10,
+            20,
+            5,
+            20,
+            36,
+            10,
+            10,
+            20,
+            5,
+            20,
+            36,
+            10,
+            10,
+            20,
+          ],
         },
       ],
+      tooltip: {
+        show: true,
+        formatter: "{c}",
+      },
     };
   }
   tagString(tags: Tag[]) {
@@ -154,6 +225,15 @@ export default class Statistics extends Vue {
   }
   .interval-tabs-item {
     height: 48px;
+  }
+  .chart {
+    width: 430%;
+    &-wrapper {
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
 }
 </style>
