@@ -31,6 +31,7 @@ import recordTypeList from "@/constants/recordTypeList";
 import dayjs from "dayjs";
 import clone from "@/lib/clone.ts";
 import Chart from "@/components/Chart.vue";
+import _ from "lodash";
 
 @Component({
   components: { Tabs, Chart },
@@ -93,6 +94,24 @@ export default class Statistics extends Vue {
     return result;
   }
   get chartOptions() {
+    const today = new Date();
+    const array = [];
+    for (let i = 0; i <= 29; i++) {
+      const dateString = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
+      const found = _.find(this.recordList, { createdAt: dateString });
+      array.push({
+        date: dateString,
+        value: found ? found.amount : 0,
+      });
+    }
+    array.sort((a, b) => {
+      if (b.date > a.date) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+
     return {
       grid: {
         left: 0,
@@ -102,32 +121,7 @@ export default class Statistics extends Vue {
         text: "ECharts 入门示例",
       },
       xAxis: {
-        data: [
-          "衬衫",
-          "羊毛衫",
-          "雪纺衫",
-          "裤子",
-          "高跟鞋",
-          "袜子",
-          "衬衫",
-          "羊毛衫",
-          "雪纺衫",
-          "裤子",
-          "高跟鞋",
-          "袜子",
-          "衬衫",
-          "羊毛衫",
-          "雪纺衫",
-          "裤子",
-          "高跟鞋",
-          "袜子",
-          "衬衫",
-          "羊毛衫",
-          "雪纺衫",
-          "裤子",
-          "高跟鞋",
-          "袜子",
-        ],
+        data: array.map((item) => item.date),
         axisTick: { alignWithLabel: true },
         axisLine: { lineStyle: { color: "#666" } },
       },
@@ -141,32 +135,7 @@ export default class Statistics extends Vue {
             borderColor: "#666",
           },
           type: "line",
-          data: [
-            5,
-            20,
-            36,
-            10,
-            10,
-            20,
-            5,
-            20,
-            36,
-            10,
-            10,
-            20,
-            5,
-            20,
-            36,
-            10,
-            10,
-            20,
-            5,
-            20,
-            36,
-            10,
-            10,
-            20,
-          ],
+          data: array.map((item) => item.value),
         },
       ],
       tooltip: {
