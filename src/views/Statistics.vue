@@ -93,25 +93,29 @@ export default class Statistics extends Vue {
     });
     return result;
   }
-  get chartOptions() {
+  get keyValueList() {
     const today = new Date();
     const array = [];
     for (let i = 0; i <= 29; i++) {
       const dateString = dayjs(today).subtract(i, "day").format("YYYY-MM-DD");
       const found = _.find(this.recordList, { createdAt: dateString });
       array.push({
-        date: dateString,
+        key: dateString,
         value: found ? found.amount : 0,
       });
     }
     array.sort((a, b) => {
-      if (b.date > a.date) {
+      if (b.key > a.key) {
         return -1;
       } else {
         return 1;
       }
     });
-
+    return array;
+  }
+  get chartOptions() {
+    const keys = this.keyValueList.map((item) => item.key);
+    const values = this.keyValueList.map((item) => item.value);
     return {
       grid: {
         left: 0,
@@ -121,7 +125,7 @@ export default class Statistics extends Vue {
         text: "ECharts 入门示例",
       },
       xAxis: {
-        data: array.map((item) => item.date),
+        data: keys,
         axisTick: { alignWithLabel: true },
         axisLine: { lineStyle: { color: "#666" } },
       },
@@ -135,7 +139,7 @@ export default class Statistics extends Vue {
             borderColor: "#666",
           },
           type: "line",
-          data: array.map((item) => item.value),
+          data: values,
         },
       ],
       tooltip: {
